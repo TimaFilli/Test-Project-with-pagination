@@ -28,7 +28,7 @@ export default (req, res, next) => {
     }
 
     if (req.url === "/users" && req.method === "DELETE") {
-      const { error } = DELETE_USER_VALIDATION.validate({ body: req.body });
+      const { error } = DELETE_USER_VALIDATION.validate({ params: req.params });
       if (error) {
         throw new ValidationError(error.message);
       }
