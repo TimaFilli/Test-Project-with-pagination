@@ -8,6 +8,7 @@ export default async ({ sequelize }) => {
         username: "John",
         password: sha256("secret"),
         gender: "male",
+        email: "john@gmail.com",
         age: 150,
         userImg: 'John.png'
       },
@@ -15,6 +16,7 @@ export default async ({ sequelize }) => {
         username: "Tom",
         password:sha256("secret"),
         gender: "male",
+        email: "tom@gmail.com",
         age: 25,
         userImg: 'Tom.jpg'
       },
@@ -22,6 +24,7 @@ export default async ({ sequelize }) => {
         username: "Nick",
         password:sha256("secret"),
         gender: "male",
+        email: "nick@gmail.com",
         age: 15,
         userImg: 'Nick.jpg'
       },
@@ -29,6 +32,7 @@ export default async ({ sequelize }) => {
         username: "Julia",
         password:sha256("secret"),
         gender: "female",
+        email: "julia@gmail.com",
         age: 19,
         userImg: 'Julia.jpg'
       },

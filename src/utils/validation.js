@@ -9,11 +9,11 @@ export const USER_LOGIN_VALIDATION = Joi.object({
 
 export const USER_REGISTER_VALIDATION = Joi.object({
     body: Joi.object({
-        username: Joi.string().alphanum().min(2).max(50).required(),
-        password: Joi.string().min(4).max(8).required()
-    }),
-    files: Joi.object({
-        file: Joi.required()
+        username: Joi.string().alphanum().min(2).max(50).trim(true).required(),
+        password: Joi.string().min(4).max(8).trim(true).required(),
+        email: Joi.string().email().trim(true).required(),
+        age: Joi.number().min(4).max(8).required(),
+        gender: Joi.string().required(),
     })
 })
 
