@@ -1,17 +1,17 @@
-import { Router } from 'express'
-import validation from '../middlewares/validation.js'
-import checkToken from '../middlewares/checkToken.js'
-import CT from '../controllers/user.js'
+import { Router } from "express";
+import validation from "../middlewares/validation.js";
+import checkToken from "../middlewares/checkToken.js";
+import CT from "../controllers/user.js";
 
-const router = Router()
+const router = Router();
 
-router.post('/register', validation, CT.POST_REGISTER)
-router.post('/login', validation, CT.POST_LOGIN)
+router.post("/user/register", validation, CT.POST_REGISTER);
+router.post("/user/login", validation, CT.POST_LOGIN);
 
-router.get('/users', checkToken, validation, CT.GET_USERS)
-router.get('/user/:userId', checkToken, CT.GET_USER)
+router.get("/profiles", checkToken, CT.GET_USERS);
+router.get("/profile/:userId", checkToken, CT.GET_USER);
 
-// router.put('/users/:userId', CT.UPDATE)
-// router.delete('/users/:userId', CT.DELETE)
+router.put("/profile/:userId", checkToken, CT.PUT_USER);
+router.delete("/profile/:userId", checkToken, CT.DELETE_USER);
 
-export default router
+export default router;

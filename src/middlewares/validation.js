@@ -6,28 +6,28 @@ import { ValidationError } from "../utils/errors.js";
 
 export default (req, res, next) => {
   try {
-    if (req.url === "/login" && req.method === "POST") {
+    if (req.url === "/user/login" && req.method === "POST") {
       const { error } = USER_LOGIN_VALIDATION.validate({ body: req.body });
       if (error) {
         throw new ValidationError(error.message);
       }
     }
 
-    if (req.url === "/register" && req.method === "POST") {
+    if (req.url === "/user/register" && req.method === "POST") {
       const { error } = USER_REGISTER_VALIDATION.validate({ body: req.body });
       if (error) {
         throw new ValidationError(error.message);
       }
     }
 
-    if (req.url === "/users" && req.method === "PUT") {
+    if (req.url === "/profile" && req.method === "PUT") {
       const { error } = PUT_USER_VALIDATION.validate({ body: req.body });
       if (error) {
         throw new ValidationError(error.message);
       }
     }
 
-    if (req.url === "/users" && req.method === "DELETE") {
+    if (req.url === "/profile" && req.method === "DELETE") {
       const { error } = DELETE_USER_VALIDATION.validate({ params: req.params });
       if (error) {
         throw new ValidationError(error.message);

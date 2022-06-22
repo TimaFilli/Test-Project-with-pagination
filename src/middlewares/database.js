@@ -1,6 +1,6 @@
 export default ({ sequelize }) => {
-    return (req, res, next) => {
-        req.models = sequelize.models
-        next()
-    }
-}
+  return (req, res, next) => {
+    req.models = sequelize.models;
+    next();
+  };
+};

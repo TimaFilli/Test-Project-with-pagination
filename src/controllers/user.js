@@ -7,7 +7,7 @@ import JWT from "../config/jwt.js";
 const GET_USERS = async (req, res, next) => {
   try {
     const page = req.query.page;
-    
+
     if (!page) {
       const users = await req.models.User.findAll({
         where: {
@@ -143,9 +143,75 @@ const GET_USER = async (req, res, next) => {
   }
 };
 
+const PUT_USER = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const { username, age, gender, email } = req.body;
+
+    const user = await req.models.User.findOne({
+      where: { userId },
+      attributes: { exclude: ["password"] },
+    });
+
+    if (!user) {
+      throw new NotFoundError("there is no such user!");
+    }
+
+    const body = {
+      username,
+      gender,
+      email,
+      age,
+    };
+
+    await req.models.User.update(body, {
+      where: {
+        userId,
+      },
+    });
+
+    await user.reload();
+
+    return res.status(200).json({
+      status: 200,
+      message: "The user updated successfully!",
+      body: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const DELETE_USER = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    const user = await req.models.User.findOne({
+      where: { userId },
+      attributes: { exclude: ["password"] },
+    });
+
+    if (!user) {
+      throw new NotFoundError("there is no such user!");
+    }
+
+    await req.models.User.destroy({ where: { userId } });
+
+    return res.status(200).json({
+      status: 200,
+      message: "The user deleted!",
+      body: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   POST_REGISTER,
+  DELETE_USER,
   POST_LOGIN,
   GET_USERS,
   GET_USER,
+  PUT_USER,
 };
